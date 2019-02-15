@@ -7,7 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-
+import android.widget.Toast;
 import com.zhouwei.md.materialdesignsamples.R;
 
 /**
@@ -125,6 +125,12 @@ public class ToolbarActivity extends AppCompatActivity implements View.OnClickLi
                 finish();
             }
         });
+        
+        // 获取ToolBar 上的编辑框
+        EditText searchEdit = (EditText) mToolbar3.findViewById(R.id.edit_search);
+        // 获取内容
+        String content = searchEdit.getText().toString();
+        
         mToolbar3.inflateMenu(R.menu.menu_search);
 
         mToolbar3.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
@@ -132,14 +138,15 @@ public class ToolbarActivity extends AppCompatActivity implements View.OnClickLi
             public boolean onMenuItemClick(MenuItem item) {
                 if(item.getItemId() == R.id.item_search){
                     // do search
+                    
+                    Toast.makeText(getApplicationContext(),"搜索内容："+((EditText) mToolbar3.findViewById(R.id.edit_search)).getText().toString(),Toast.LENGTH_SHORT).show();
+
+                    
                 }
                 return false;
             }
         });
-        // 获取ToolBar 上的编辑框
-        EditText searchEdit = (EditText) mToolbar3.findViewById(R.id.edit_search);
-        // 获取内容
-        String content = searchEdit.getText().toString();
+        
     }
 
     @Override
